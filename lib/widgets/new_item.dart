@@ -31,11 +31,14 @@ class _NewItemState extends State<NewItem>{
         'category':_selectedCategory.title,
        }),
       );
+      final Map<String, dynamic> resData = json.decode(response.body);
       if(!context.mounted){
         return;
       }
       else{
-       Navigator.of(context).pop();    
+       Navigator.of(context).pop(
+        GroceryItem(id: resData['name'], name: _enteredName, quantity: _enteredQuantity, category: _selectedCategory)
+       );    
       }
     }
   }
